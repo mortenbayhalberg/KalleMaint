@@ -1,0 +1,49 @@
+﻿@model IEnumerable<KalleMaint.Models.tblSpil>
+
+@{
+    ViewBag.Title = "Spillede Games";
+
+ }
+
+
+<h2>Index games - @ViewBag.spillerNavn</h2>
+
+
+<p>
+    @Html.ActionLink("Create New | ", "Create", new { spillerID = ViewBag.spillerID })
+    @Html.ActionLink("Back to List", "Index", "Home")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.spilDato)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.spilScore1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblSpiller.spillerForNavn)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.spilDato)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.spilScore1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblSpiller.spillerForNavn)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.spilPK, spillerID = ViewBag.spillerID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.spilPK, spillerID = ViewBag.spillerID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.spilPK, spillerID = ViewBag.spillerID })
+        </td>
+    </tr>
+}
+
+</table>

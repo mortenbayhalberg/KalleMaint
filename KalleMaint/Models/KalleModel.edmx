@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBKalleKamelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblSpil">
+          <Key>
+            <PropertyRef Name="spilPK" />
+          </Key>
+          <Property Name="spilPK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="spilSpillerID" Type="int" Nullable="false" />
+          <Property Name="spilDato" Type="date" Nullable="false" />
+          <Property Name="spilScore1" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSpiller">
+          <Key>
+            <PropertyRef Name="spillerPK" />
+          </Key>
+          <Property Name="spillerPK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="spillerForNavn" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="spillerEfterNavn" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="spillerOptagelsesDato" Type="date" />
+          <Property Name="spillerFunktion" Type="smallint" />
+          <Property Name="spillerUdmeldt" Type="date" />
+        </EntityType>
+        <Association Name="FK_tblSpil_tblSpiller">
+          <End Role="tblSpiller" Type="Self.tblSpiller" Multiplicity="1" />
+          <End Role="tblSpil" Type="Self.tblSpil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSpiller">
+              <PropertyRef Name="spillerPK" />
+            </Principal>
+            <Dependent Role="tblSpil">
+              <PropertyRef Name="spilSpillerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBKalleKamelModelStoreContainer">
+          <EntitySet Name="tblSpil" EntityType="Self.tblSpil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSpiller" EntityType="Self.tblSpiller" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblSpil_tblSpiller" Association="Self.FK_tblSpil_tblSpiller">
+            <End Role="tblSpiller" EntitySet="tblSpiller" />
+            <End Role="tblSpil" EntitySet="tblSpil" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBKalleKamelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblSpil">
+          <Key>
+            <PropertyRef Name="spilPK" />
+          </Key>
+          <Property Name="spilPK" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="spilSpillerID" Type="Int32" Nullable="false" />
+          <Property Name="spilDato" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="tblSpiller" Relationship="Self.FK_tblSpil_tblSpiller" FromRole="tblSpil" ToRole="tblSpiller" />
+          <Property Name="spilScore1" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSpiller">
+          <Key>
+            <PropertyRef Name="spillerPK" />
+          </Key>
+          <Property Name="spillerPK" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="spillerForNavn" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="spillerEfterNavn" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="spillerOptagelsesDato" Type="DateTime" Precision="0" />
+          <Property Name="spillerFunktion" Type="Int16" />
+          <Property Name="spillerUdmeldt" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tblSpils" Relationship="Self.FK_tblSpil_tblSpiller" FromRole="tblSpiller" ToRole="tblSpil" />
+        </EntityType>
+        <Association Name="FK_tblSpil_tblSpiller">
+          <End Role="tblSpiller" Type="Self.tblSpiller" Multiplicity="1" />
+          <End Role="tblSpil" Type="Self.tblSpil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSpiller">
+              <PropertyRef Name="spillerPK" />
+            </Principal>
+            <Dependent Role="tblSpil">
+              <PropertyRef Name="spilSpillerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBKalleKamelEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblSpils" EntityType="Self.tblSpil" />
+          <EntitySet Name="tblSpillers" EntityType="Self.tblSpiller" />
+          <AssociationSet Name="FK_tblSpil_tblSpiller" Association="Self.FK_tblSpil_tblSpiller">
+            <End Role="tblSpiller" EntitySet="tblSpillers" />
+            <End Role="tblSpil" EntitySet="tblSpils" />
+          </AssociationSet>
+          </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBKalleKamelModelStoreContainer" CdmEntityContainer="DBKalleKamelEntities">
+          <EntitySetMapping Name="tblSpils">
+            <EntityTypeMapping TypeName="IsTypeOf(DBKalleKamelModel.tblSpil)">
+              <MappingFragment StoreEntitySet="tblSpil">
+                <ScalarProperty Name="spilScore1" ColumnName="spilScore1" />
+                <ScalarProperty Name="spilPK" ColumnName="spilPK" />
+                <ScalarProperty Name="spilDato" ColumnName="spilDato" />
+                <ScalarProperty Name="spilSpillerID" ColumnName="spilSpillerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSpillers">
+            <EntityTypeMapping TypeName="DBKalleKamelModel.tblSpiller">
+              <MappingFragment StoreEntitySet="tblSpiller">
+                <ScalarProperty Name="spillerPK" ColumnName="spillerPK" />
+                <ScalarProperty Name="spillerForNavn" ColumnName="spillerForNavn" />
+                <ScalarProperty Name="spillerEfterNavn" ColumnName="spillerEfterNavn" />
+                <ScalarProperty Name="spillerOptagelsesDato" ColumnName="spillerOptagelsesDato" />
+                <ScalarProperty Name="spillerFunktion" ColumnName="spillerFunktion" />
+                <ScalarProperty Name="spillerUdmeldt" ColumnName="spillerUdmeldt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

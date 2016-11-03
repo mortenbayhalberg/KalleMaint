@@ -1,0 +1,58 @@
+﻿@model KalleMaint.Models.tblSpil
+
+@{
+    ViewBag.Title = "Create Games";
+}
+
+<h2>Create games - @ViewBag.spillerNavn</h2>
+
+<p>
+    @Html.ActionLink("Back to List", "Index", new { spillerID = ViewBag.spillerID })
+</p>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+         @*Jeg skal ikke bruge drop down valgt, da spilleren allerede er valgt?
+        <div class="form-group">
+            @Html.LabelFor(model => model.spilSpillerID, "spilSpillerID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("spilSpillerID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.spilSpillerID, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+        
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.spilDato, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.spilDato, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.spilDato, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.spilScore1, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.spilScore1, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.spilScore1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

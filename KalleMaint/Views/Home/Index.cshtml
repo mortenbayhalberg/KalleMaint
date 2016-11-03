@@ -1,0 +1,59 @@
+﻿@model IEnumerable<KalleMaint.Models.tblSpiller>
+
+@{
+    ViewBag.Title = "Index spiller";
+}
+
+<h2>Index profiles</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.spillerForNavn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.spillerEfterNavn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.spillerOptagelsesDato)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.spillerFunktion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.spillerUdmeldt)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.spillerForNavn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.spillerEfterNavn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.spillerOptagelsesDato)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.spillerFunktion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.spillerUdmeldt)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.spillerPK }) |
+                @Html.ActionLink("Details", "Details", new { id = item.spillerPK }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.spillerPK }) |
+                @Html.ActionLink("Games", "Index", "Spil", new { spillerID = item.spillerPK }, item.spillerPK)
+            </td>
+        </tr>
+    }
+
+</table>

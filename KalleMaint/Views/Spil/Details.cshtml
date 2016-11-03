@@ -1,0 +1,44 @@
+﻿@model KalleMaint.Models.tblSpil
+
+@{
+    ViewBag.Title = "Details Games";
+}
+
+<h2>Details games - @ViewBag.spillerNavn</h2>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.spilPK, spillerID = Model.tblSpiller.spillerPK }) |
+    @Html.ActionLink("Back to List", "Index", new { spillerID = Model.tblSpiller.spillerPK })
+</p>
+
+
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.spilDato)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.spilDato)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.spilScore1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.spilScore1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblSpiller.spillerForNavn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblSpiller.spillerForNavn)
+        </dd>
+
+    </dl>
+</div>

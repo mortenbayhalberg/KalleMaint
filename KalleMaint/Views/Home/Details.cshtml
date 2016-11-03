@@ -1,0 +1,60 @@
+﻿@model KalleMaint.Models.tblSpiller
+
+@{
+    ViewBag.Title = "Details spiller";
+}
+
+<h2>Details profile - @ViewBag.spillerNavn</h2>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.spillerPK }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+
+<div>
+    <h4>tblSpiller</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.spillerForNavn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.spillerForNavn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.spillerEfterNavn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.spillerEfterNavn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.spillerOptagelsesDato)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.spillerOptagelsesDato)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.spillerFunktion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.spillerFunktion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.spillerUdmeldt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.spillerUdmeldt)
+        </dd>
+
+    </dl>
+</div>
